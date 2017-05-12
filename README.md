@@ -10,7 +10,7 @@ Installation
 
 Requirements:
 
-  - tmux **`2.1+`** running inside Linux, Mac, OpenBSD or Cygwin
+  - tmux **`>= 2.1`** running inside Linux, Mac, OpenBSD or Cygwin
   - outside of tmux, `$TERM` must be set to `xterm-256color`
 
 To install, run the following from your terminal: (you may want to backup your
@@ -23,10 +23,57 @@ $ ln -s -f .tmux/.tmux.conf
 $ cp .tmux/.tmux.conf.local .
 ```
 
-Then proceed to customize your `~/.tmux.conf.local` copy.
+Then proceed to [customize] your `~/.tmux.conf.local` copy.
+
+[customize]: #enabling-the-powerline-look
 
 If you're a Vim user, setting the `$EDITOR` environment variable to `vim` will
 enable and further customize the vi-style key bindings (see tmux manual).
+
+Troubleshooting
+---------------
+
+ - **I'm running tmux `HEAD` and things don't work properly. What should I do?**
+
+   Please open an issue describing what doesn't work with upcoming tmux. I'll do
+   my best to address it.
+
+ - **Status line is broken and/or gets duplicated at the bottom of the screen.
+   What gives?**
+
+   This particularly happens on Linux when the distribution provides a version
+   of glib that received Unicode 9.0 upgrades (glib `>= 2.50.1`) while providing
+   a version of glibc that didn't (glibc `< 2.26`). You may also configure
+   `LC_CTYPE` to use an `UTF-8` locale. Typically VTE based terminal emulators
+   rely on glib's `g_unichar_iswide()` function while tmux relies on glibc's
+   `wcwidth()` function. When these two functions disagree, display gets messed
+   up.
+
+   This can also happen on MacOS when using iTerm2 and "Use Unicode version 9
+   character widths" is enabled in `Preferences... > Profiles > Text`
+
+   For that reason, the default `/.tmux.conf.local` file stopped using Unicode
+   characters for which width changed in between Unicode 8.0 and 9.0 standards,
+   as well as Emojis.
+
+ - **I installed Powerline and/or (patched) fonts but can't see Powerline
+   symbols.**
+
+   First, you don't need to install Powerline. You only need fonts patched with
+   Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
+   sure your `~/.tmux.conf.local` copy uses the right code points for
+   `tmux_conf_theme_left_separator_XXX` values.
+
+ - **I'm using Bash On Windows (WSL) and colors are broken.**
+
+   There is currently a [bug][1681] in the new console powering Bash On Windows
+   preventing text attributes (bold, underscore, ...) to combine properly with
+   colors. The workaround is to search your `~/.tmux.conf.local` copy and
+   replace attributes with `'none'`. The alternative is to use the
+   [Mintty terminal for WSL][wsltty].
+
+[1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
+[wsltty]: https://github.com/mintty/wsltty
 
 Features
 --------
@@ -40,7 +87,7 @@ Features
    if available
  - laptop battery status line information
  - uptime status line information
- - optional highlight of focused pane (tmux `2.1+`)
+ - optional highlight of focused pane (tmux `>= 2.1`)
  - configurable new windows and panes behavior (optionally retain current path)
  - SSH aware split pane (reconnects to remote server, experimental)
  - [Facebook PathPicker][] integration if available
@@ -51,6 +98,14 @@ Features
 [reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 [Facebook PathPicker]: https://facebook.github.io/PathPicker/
 [Urlview]: https://packages.debian.org/stable/misc/urlview
+
+tmux may be controlled from an attached client by using a key combination of a
+prefix key, followed by a command key. This configuration uses `C-a` as a
+secondary prefix while keeping `C-b` as the default prefix. In the following
+list of key bindings:
+  - `<prefix>` means you have to either hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd>
+  - `<prefix> c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>c</kbd>
+  - `<prefix> C-c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>Ctrl</kbd> + <kbd>c</kbd>
 
 This configuration uses the following bindings:
 
