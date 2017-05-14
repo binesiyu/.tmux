@@ -119,7 +119,7 @@ tmux_conf_theme_window_status_bell_bg='default'
 tmux_conf_theme_window_status_bell_attr='blink,bold'
 
 # window last status style
-tmux_conf_theme_window_status_last_fg='#00afff'         # light blue
+tmux_conf_theme_window_status_last_fg='#ffaf00'         # orange
 tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
@@ -155,7 +155,7 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ❐ #S | #{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+tmux_conf_theme_status_left=' ❐ #S | #{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} #{uptime_m}m '
 tmux_conf_theme_status_right='#{prefix}#{pairing} #{username}#{root} | #{hostname} '
 
 # status left style
@@ -165,7 +165,7 @@ tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#000000,#000000' # light gray, black, black
-tmux_conf_theme_status_right_bg='#080808,#ffaf00,#e4e4e4' # dark gray, oringe, white
+tmux_conf_theme_status_right_bg='#080808,#ffaf00,#e4e4e4' # dark gray, orange, white
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
