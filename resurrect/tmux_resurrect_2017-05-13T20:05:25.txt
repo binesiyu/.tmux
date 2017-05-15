@@ -1,7 +1,0 @@
-pane	root	1	:vim	0	:-	1	:/home/exsaber	1	vim	:vim
-pane	root	2	:~/.tmux	1	:*	1	:/home/exsaber	0	vim	:vim .tmux.conf
-pane	root	2	:~/.tmux	1	:*	2	:/home/exsaber/.tmux	1	zsh	:
-pane	root	2	:~/.tmux	1	:*	3	:/usr/share/man	0	man	:man tmux
-window	root	1	0	:-	c23d,170x36,0,0,0
-window	root	2	1	:*	1261,170x36,0,0{85x36,0,0,1,84x36,86,0[84x18,86,0,2,84x17,86,19,3]}
-state	root	
