@@ -39,7 +39,8 @@ fi
 # 获取当前 tmux pane
 if [[ -n "$TMUX_PANE" ]]; then
     # 触发 tmux bell（会在窗口状态栏显示活动标记）
-    printf '\a'
+    # 使用 send-keys 发送 bell 字符到 pane，确保 window_bell_flag 被设置
+    tmux send-keys -t "$TMUX_PANE" -l $'\a' 2>/dev/null
 
     # 设置 pane 标题显示通知
     tmux select-pane -t "$TMUX_PANE" -T "🔔 Claude: $MESSAGE" 2>/dev/null
@@ -53,4 +54,4 @@ fi
 
 # 降级方案：广播到所有窗口
 tmux display-message -a "[Claude] $MESSAGE" 2>/dev/null || true
-printf '\a'
+printf '\a'  > /dev/tty
