@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tmux list-sessions:*)",
+      "Bash(chmod +x /Users/yubin/.tmux/scripts/claude-notify.sh)",
+      "Bash(tmux source-file:*)",
+      "Bash(tmux show-options:*)"
+    ]
+  }
+}
