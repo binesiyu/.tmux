@@ -5,6 +5,19 @@
 MESSAGE="$1"
 TYPE="${2:-info}"
 
+# 检测是否在 tmux 会话中
+is_in_tmux() {
+    # 方法 1: 检查 TMUX 环境变量
+    if [[ -n "$TMUX" ]]; then
+        return 0
+    fi
+    # 方法 2: 检查是否在 tmux 服务器中
+    if tmux info &>/dev/null; then
+        return 0
+    fi
+    return 1
+}
+
 # 如果是 Write hook，$ARGUMENTS 包含文件路径
 if [[ "$TYPE" == "write" && -n "$ARGUMENTS" ]]; then
     # 从 JSON 中提取文件路径
@@ -13,6 +26,14 @@ if [[ "$TYPE" == "write" && -n "$ARGUMENTS" ]]; then
         FILE_NAME=$(basename "$FILE_PATH")
         MESSAGE="✏️ 写入文件：$FILE_NAME"
     fi
+fi
+
+# 检测是否在 tmux 会话中
+if ! is_in_tmux; then
+    # 不在 tmux 中，仅输出消息到 stdout
+    echo "[Claude] $MESSAGE"
+    printf '\a'
+    exit 0
 fi
 
 # 获取当前 tmux pane

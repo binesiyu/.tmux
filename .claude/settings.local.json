@@ -4,7 +4,8 @@
       "Bash(tmux list-sessions:*)",
       "Bash(chmod +x /Users/yubin/.tmux/scripts/claude-notify.sh)",
       "Bash(tmux source-file:*)",
-      "Bash(tmux show-options:*)"
+      "Bash(tmux show-options:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
