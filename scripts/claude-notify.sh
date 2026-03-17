@@ -50,7 +50,7 @@ if [[ -n "$TMUX_PANE" ]]; then
     PANE_TTY=$(tmux display-message -p -t "$TMUX_PANE" -F '#{pane_tty}' 2>/dev/null)
     [[ -n "$PANE_TTY" && -w "$PANE_TTY" ]] && printf '\a' > "$PANE_TTY" 2>/dev/null
 
-    tmux display-message -t "$TMUX_PANE" "[Claude] $MESSAGE" 2>/dev/null
+    tmux display-message -d 5000 -t "$TMUX_PANE" "[Claude] $MESSAGE" 2>/dev/null
 fi
 
 exit 0
