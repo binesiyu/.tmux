@@ -81,3 +81,39 @@ tail -f plugins/tpm/tpm_log.txt    # TPM logs
 - `.tmux.conf.local` - User customizations, theme settings, plugin declarations
 - `.claude/settings.local.json` - Claude Code permissions for tmux commands
 - `scripts/claude-notify.sh` - Notification script with logging
+
+## Core Configuration (.tmux.conf)
+
+### Prefix Keys
+- Primary: `Ctrl-s`
+- Secondary: `Ctrl-z` (GNU-Screen compatible)
+
+### Key Bindings
+- `Prefix + e` - Edit `.tmux.conf.local` in editor
+- `Prefix + r` - Reload configuration
+- `Prefix + C-c` - Create new session
+- `Prefix + C-f` - Switch to session by name
+- `Prefix + C-h/C-l` - Navigate windows
+- `Prefix + -/_` - Split pane horizontally/vertically
+- `Prefix + h/j/k/l` - Navigate panes (Vim style)
+- `Prefix + m` - Toggle mouse mode
+
+### Terminal Settings
+- `default-terminal: screen-256color`
+- `history-limit: 15000`
+- `escape-time: 10` (faster command sequences)
+- `focus-events: on`
+- `allow-passthrough: on` (for iTerm2 escape sequences)
+
+### Bell & Activity
+- `bell-action: any` - Monitor bells from all panes
+- `monitor-bell: on` - Enable bell notifications
+- `monitor-activity: on` - Monitor window activity
+- `visual-activity: off` - No visual activity indicator
+
+### Pane & Window Behavior
+- `base-index: 1` - Windows start at 1
+- `pane-base-index: 1` - Panes start at 1
+- `automatic-rename: off` - Don't auto-rename windows
+- `allow-rename: off` - Don't allow programs to rename
+- `renumber-windows: on` - Renumber when windows close
